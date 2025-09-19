@@ -1,0 +1,66 @@
+graphql-app/
+│── src/
+│   ├── config/                 # App configuration (env, db, logger, etc.)
+│   │   ├── index.ts
+│   │   ├── database.ts
+│   │   └── logger.ts
+│   │
+│   ├── modules/                # Feature-based (Domain-driven design)
+│   │   ├── user/
+│   │   │   ├── user.model.ts   # Mongoose/Sequelize/Prisma model
+│   │   │   ├── user.typeDefs.ts# GraphQL schema (SDL)
+│   │   │   ├── user.resolvers.ts # GraphQL resolvers
+│   │   │   ├── user.service.ts # Business logic
+│   │   │   ├── user.loader.ts  # DataLoader (batching/caching)
+│   │   │   ├── user.inputs.ts  # GraphQL input types (validation layer)
+│   │   │   └── index.ts
+│   │   │
+│   │   ├── product/
+│   │   │   ├── product.model.ts
+│   │   │   ├── product.typeDefs.ts
+│   │   │   ├── product.resolvers.ts
+│   │   │   ├── product.service.ts
+│   │   │   ├── product.loader.ts
+│   │   │   └── index.ts
+│   │   │
+│   │   └── index.ts            # Export all module typeDefs/resolvers
+│   │
+│   ├── graphql/
+│   │   ├── schema.ts           # Merge all typeDefs
+│   │   ├── resolvers.ts        # Merge all resolvers
+│   │   ├── context.ts          # Context builder (auth, loaders, etc.)
+│   │   ├── directives/         # Custom GraphQL directives
+│   │   │   ├── auth.directive.ts
+│   │   │   └── date.directive.ts
+│   │   └── scalars/            # Custom scalars
+│   │       ├── date.scalar.ts
+│   │       └── index.ts
+│   │
+│   ├── utils/                  # Utility functions (error handling, helpers)
+│   │   ├── errorHandler.ts
+│   │   ├── response.ts
+│   │   └── constants.ts
+│   │
+│   ├── middlewares/            # Express/Apollo middlewares
+│   │   ├── auth.middleware.ts
+│   │   └── logging.middleware.ts
+│   │
+│   ├── loaders/                # App initial loaders (DB, cache, etc.)
+│   │   ├── database.loader.ts
+│   │   └── redis.loader.ts
+│   │
+│   ├── index.ts                # App entry (Express/Apollo Server init)
+│   └── server.ts               # Server configuration
+│
+├── tests/                      # Unit & integration tests
+│   ├── user.test.ts
+│   ├── product.test.ts
+│   └── graphql.test.ts
+│
+├── .env                        # Environment variables
+├── .env.example                # Sample env for onboarding
+├── docker-compose.yml          # Docker for local dev
+├── Dockerfile
+├── tsconfig.json               # TypeScript config
+├── package.json
+└── README.md
